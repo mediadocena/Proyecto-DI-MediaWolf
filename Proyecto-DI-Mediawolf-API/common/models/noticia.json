@@ -1,7 +1,7 @@
 {
   "name": "noticia",
   "plural": "noticias",
-  "base": "Model",
+  "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
