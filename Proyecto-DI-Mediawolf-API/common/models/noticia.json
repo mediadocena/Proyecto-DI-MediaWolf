@@ -19,7 +19,18 @@
     },
     "cuerpo": {
       "type": "string"
-    }
+    },
+    "comentarios": [{
+      "icono": {
+        "type": "string"
+      },
+      "nick": {
+        "type": "string"
+      },
+      "cuerpo": {
+        "type": "string"
+      }
+    }]
   },
   "validations": [],
   "relations": {},
