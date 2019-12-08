@@ -22,8 +22,38 @@ class Users(Resource):
         realm=request.json['realm']
         password=request.json['password']
         usr.insert_one({'realm':realm,'username':name,'password':password,'email':email,'emailVerified':'true'})
-        return{'status':'Nuevo Empleado Añadido'}
+        return{'status':'Nuevo Usuario Añadido'}
+    def put(self):  
+        usr=mongo.db.user
+        #TODO
+        return{'status':'usuario modificado'}
+
+class Noticias(Resource): 
+    def get(self):
+        usr=mongo.db.noticia
+        output=[]
+        for s in usr.find():
+            output.append({'titulo':s['titulo'],'subtitulo':s['subtitulo'],'cuerpo':s['cuerpo'],'comentarios':s['comentarios']})
+        return jsonify({'result':output})
+
+    def post(self):
+        usr=mongo.db.noticia
+        title=request.json['titulo']
+        subtitle=request.json['subtitulo']
+        img=request.json['img']
+        body=request.json['cuerpo']
+        comments=request.json['comentarios']
+        usr.insert_one({'titulo':title,'subtitulo':subtitle,'img':img,'cuerpo':body,'comentarios':comments})
+        return{'status':'Nueva noticia añadida'}
+
+    def put(self):
+        usr=mongo.db.noticia
+        #TODO 
+
+        return{'status':'noticia actualizada correctamente'}
 
 api.add_resource(Users,'/users')
+api.add_resource(Noticias,'/noticias')
+
 if __name__ =='__main__':
     app.run(port='5000')
