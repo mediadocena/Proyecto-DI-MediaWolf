@@ -28,16 +28,14 @@
     "cuerpo": {
       "type": "string"
     },
-    "comentarios":{
-     "type":{
-       
-        "numero":{"type":"number"},
-        "icono":{"type":"string"},
-        "nick":{"type":"string"},
-        "cuerpo":{"type":"string"}
-      
+    "comentarios":[
+      {
+        "numero":"number",
+        "nick":"string",
+        "cuerpo":"string",
+        "icono":"string"
       }
-    }
+      ]
   },
   "validations": [],
   "relations": {},
