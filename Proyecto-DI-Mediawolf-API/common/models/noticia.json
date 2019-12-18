@@ -33,7 +33,8 @@
         "numero":"number",
         "nick":"string",
         "cuerpo":"string",
-        "icono":"string"
+        "icono":"string",
+        "iduser":"string"
       }
       ]
   },
