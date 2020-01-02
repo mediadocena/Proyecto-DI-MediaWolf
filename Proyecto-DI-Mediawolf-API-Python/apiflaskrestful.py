@@ -66,26 +66,43 @@ class Noticias(Resource):
 class NoticiasId(Resource):
         def get(self):  
             usr=mongo.db.noticia
-            di = request.json['_id']
+            di = request.args['_id']
+            print(di)
             for s in usr.find({'_id':ObjectId(di)}): 
                 di = s['_id']
-                di
+                categoria = s['categoria']
                 titulo = s['titulo']
                 subtitulo = s['subtitulo']
                 img = s['img']
                 cuerpo = s['cuerpo']
-                coments = s['comentarios']
+                comArr = []
+                for c in s['comentarios']: 
+                    objid = c['iduser']
+                    comArr.append({
+                    'id':JSONEncoder().encode(objid).replace('"',''),
+                    'numero' : c['numero'],
+                    'nick' : c['nick'],
+                    'cuerpo' : c['cuerpo'],
+                    'icono' : c['icono']
+                    })
+
                 noticia = {
-                    'id':di,
+                    'id':JSONEncoder().encode(di).replace('"',''),
                     'titulo':titulo,
+                    'categoria':categoria,
                     'subtitulo':subtitulo,
                     'img':img,
                     'cuerpo':cuerpo,
-                    'comentarios':coments
+                    'comentarios':comArr
                 }
-            print(noticia)
-            return {'status':JSONEncoder().encode(noticia)}
-
+                print('NOTISIO',noticia['comentarios'])
+            return jsonify(noticia)
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
+    return response
 api.add_resource(Users,'/users')
 api.add_resource(Noticias,'/noticias')
 api.add_resource(NoticiasId,'/noticiasId')
