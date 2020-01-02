@@ -1,12 +1,19 @@
 from flask import Flask,request,jsonify
 from flask_restful import Resource,Api
 from flask_pymongo import PyMongo
+from bson.objectid import ObjectId
 import json
 app = Flask(__name__)
 app.config['MONGO_DBNAME']='test'
 app.config['MONGO_URI']='mongodb+srv://Alejandro:Prueba1@proyectodi-sn0fh.mongodb.net/test?retryWrites=true&w=majority'
 mongo=PyMongo(app)
 api = Api(app)
+
+class JSONEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, ObjectId):
+            return str(o)
+        return json.JSONEncoder.default(self, o)
 
 class Users(Resource):
     def get(self):
@@ -48,12 +55,40 @@ class Noticias(Resource):
 
     def put(self):
         usr=mongo.db.noticia
-        #TODO 
-
+        di = request.json['_id']
+        title=request.json['titulo']
+        subtitle=request.json['subtitulo']
+        img=request.json['img']
+        body=request.json['cuerpo']
+        comments=request.json['comentarios']
+        usr.update_one({'_id':ObjectId(di)},{'$set':{'titulo':title,'subtitulo':subtitle,'img':img,'cuerpo':body,'comentarios':comments}})
         return{'status':'noticia actualizada correctamente'}
+class NoticiasId(Resource):
+        def get(self):  
+            usr=mongo.db.noticia
+            di = request.json['_id']
+            for s in usr.find({'_id':ObjectId(di)}): 
+                di = s['_id']
+                di
+                titulo = s['titulo']
+                subtitulo = s['subtitulo']
+                img = s['img']
+                cuerpo = s['cuerpo']
+                coments = s['comentarios']
+                noticia = {
+                    'id':di,
+                    'titulo':titulo,
+                    'subtitulo':subtitulo,
+                    'img':img,
+                    'cuerpo':cuerpo,
+                    'comentarios':coments
+                }
+            print(noticia)
+            return {'status':JSONEncoder().encode(noticia)}
 
 api.add_resource(Users,'/users')
 api.add_resource(Noticias,'/noticias')
+api.add_resource(NoticiasId,'/noticiasId')
 
 if __name__ =='__main__':
     app.run(port='5000')
