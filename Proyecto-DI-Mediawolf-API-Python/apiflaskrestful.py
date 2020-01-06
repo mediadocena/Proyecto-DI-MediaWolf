@@ -40,8 +40,9 @@ class Noticias(Resource):
         usr=mongo.db.noticia
         output=[]
         for s in usr.find():
-            output.append({'titulo':s['titulo'],'subtitulo':s['subtitulo'],'cuerpo':s['cuerpo'],'comentarios':s['comentarios']})
-        return jsonify({'result':output})
+            di = JSONEncoder().encode(s['_id']).replace('"','')
+            output.append({'id':di,'titulo':s['titulo'],'img':s['img'],'subtitulo':s['subtitulo'],'cuerpo':s['cuerpo']})
+        return output
 
     def post(self):
         usr=mongo.db.noticia
