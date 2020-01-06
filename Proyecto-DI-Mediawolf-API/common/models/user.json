@@ -6,10 +6,12 @@
     "validateUpsert": true
   },
   "properties": {
-    "icono":"string",
-    "rol":{
-      "type":"string",
-      "required":"true"
+    "icono": {
+      "type": "string"
+    },
+    "rol": {
+      "type": "string",
+      "required": "true"
     }
   },
   "validations": [],

@@ -7,13 +7,13 @@
     "validateUpsert": true
   },
   "properties": {
-    "id":{
-      "type":"number",
-      "required":true
+    "id": {
+      "type": "number",
+      "required": true
     },
-    "categoria":{
-      "type":"string",
-      "required":true
+    "categoria": {
+      "type": "string",
+      "required": true
     },
     "titulo": {
       "type": "string",
@@ -28,15 +28,17 @@
     "cuerpo": {
       "type": "string"
     },
-    "comentarios":[
-      {
-        "numero":"number",
-        "nick":"string",
-        "cuerpo":"string",
-        "icono":"string",
-        "iduser":"string"
-      }
+    "comentarios": {
+      "type": [
+        {
+          "numero": "number",
+          "nick": "string",
+          "cuerpo": "string",
+          "icono": "string",
+          "iduser": "string"
+        }
       ]
+    }
   },
   "validations": [],
   "relations": {},
