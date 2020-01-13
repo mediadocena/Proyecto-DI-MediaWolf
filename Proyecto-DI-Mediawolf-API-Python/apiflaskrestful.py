@@ -48,10 +48,11 @@ class Noticias(Resource):
         usr=mongo.db.noticia
         title=request.json['titulo']
         subtitle=request.json['subtitulo']
+        categoria = request.json['categoria']
         img=request.json['img']
         body=request.json['cuerpo']
         comments=request.json['comentarios']
-        usr.insert_one({'titulo':title,'subtitulo':subtitle,'img':img,'cuerpo':body,'comentarios':comments})
+        usr.insert_one({'titulo':title,'subtitulo':subtitle,'categoria':categoria,'img':img,'cuerpo':body,'comentarios':comments})
         return{'status':'Nueva noticia añadida'}
 
     def put(self):
@@ -78,10 +79,9 @@ class NoticiasId(Resource):
                 cuerpo = s['cuerpo']
                 comArr = []
                 for c in s['comentarios']: 
-                    objid = c['iduser']
+                    objid = c['id']
                     comArr.append({
                     'id':JSONEncoder().encode(objid).replace('"',''),
-                    'numero' : c['numero'],
                     'nick' : c['nick'],
                     'cuerpo' : c['cuerpo'],
                     'icono' : c['icono']
