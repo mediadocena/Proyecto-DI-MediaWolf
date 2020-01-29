@@ -42,6 +42,12 @@
   },
   "image": {
     "dataSource": "storage",
-    "public": true
+    "public": true,
+    "options": {
+      
+    },
+    "Email": {
+      "dataSource": "Email"
+    }
   }
 }

@@ -1,20 +1,19 @@
 <ion-content>
   <ion-col class="align-self-center">
-      <ion-row class="ion-justify-content-center ">
+      <ion-row class="ion-justify-content-center">
           <form>
-              <ion-item>
+              <ion-item >
                 <ion-label position="floating">E-Mail <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input required formControlName="email" type="text"></ion-input>
+                <ion-input required [(ngModel)]="username" name="paco2" ></ion-input>
               </ion-item>
               <ion-item>
                 <ion-label position="floating">Password <ion-text color="danger">*</ion-text></ion-label>
-                <ion-input required formControlName="password" type="text"></ion-input>
-              </ion-item>
-              <ion-button class="text-center" block color="primary" type="submit">
+                <ion-input required [(ngModel)]="password" name="paco"></ion-input>
+               </ion-item>
+              <ion-button class="text-center" block color="primary"  (click)="LogIn()">
                   Login
                 </ion-button>
             </form>
-      </ion-row>
-              
+      </ion-row> 
   </ion-col>
   </ion-content>

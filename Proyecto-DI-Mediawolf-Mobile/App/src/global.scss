@@ -26,7 +26,11 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 .capa{
-    background-color: rgba(0, 0, 0, 0.48);
+    background-color: rgba(0, 0, 0, 1);
+}
+.getstart{
+    background-color: transparent;
+    --background: url('http://localhost:3000/api/images/images/download/fondo.png')
 }
 
 //

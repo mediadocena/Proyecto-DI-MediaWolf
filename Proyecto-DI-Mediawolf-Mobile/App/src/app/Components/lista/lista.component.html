@@ -1,0 +1,25 @@
+<app-iconouser>
+</app-iconouser>
+<ion-content class="getstart">
+
+<br>
+<div class="col">
+    <div *ngFor = "let noticia of noticias; let i = index;">
+        <div class="col">
+            <a routerLink="/Noticias/{{noticia._id}}">
+            <div class="row capa border border-dark rounded">
+                <div class="mx-auto">
+                    <img src="{{noticia.img}}" class="rounded float-left img-fluid iconoticias" alt="">
+                </div>
+                <div class="col text-white">
+                    <h1>{{noticia.titulo}}</h1>
+                    <h3>{{noticia.subtitulo}}</h3>
+                </div>
+                
+            </div>
+        </a>
+        </div>
+        <br>
+    </div>
+</div>
+</ion-content>

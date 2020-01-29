@@ -9,5 +9,19 @@
     "connector": "loopback-component-storage",
     "provider": "filesystem",
     "root": "./files"
+  },
+  "mail": {
+    "name": "Email",
+    "connector": "mail",
+    "transports": [{
+      "type": "SMTP",
+      "host": "smtp.gmail.com",
+      "secure": true,
+      "port": 465,
+      "auth": {
+        "user": "name@gmail.com",
+        "pass": "pass"
+      }
+    }]
   }
 }
