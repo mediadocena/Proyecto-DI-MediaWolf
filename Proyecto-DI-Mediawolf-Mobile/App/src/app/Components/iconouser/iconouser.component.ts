@@ -16,7 +16,7 @@ export class IconouserComponent implements OnInit {
 
   }
 ajustes(){
-  this.router.navigate(['/Ajustes']);
+  this.router.navigate(['/ajustes']);
 
 }
 }

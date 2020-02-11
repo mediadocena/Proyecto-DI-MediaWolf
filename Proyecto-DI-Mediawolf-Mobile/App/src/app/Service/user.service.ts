@@ -30,6 +30,7 @@ export class UserService {
         this.obtenerUsuario().subscribe((data:any)=>{
           localStorage.setItem('icono',JSON.stringify(data.icono));
           window.location.reload();
+          localStorage.setItem('pass', JSON.stringify(user.password));
         },(err)=>this.presentToast('Error al obtener icono'));
        
         //JSON.parse() para convertir el string almacenado en un JSON.
