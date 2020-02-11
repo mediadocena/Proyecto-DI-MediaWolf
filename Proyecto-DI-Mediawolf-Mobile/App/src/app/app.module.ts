@@ -26,7 +26,8 @@ import { UsuarioComponent } from './Components/usuario/usuario.component';
 @NgModule({
   declarations: [AppComponent,InicioComponent,ListaComponent,IconouserComponent, UsuarioComponent, AjustesComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,FormsModule,ReactiveFormsModule],
+  imports: [BrowserModule, IonicModule.forRoot(),
+     AppRoutingModule,HttpClientModule,FormsModule,ReactiveFormsModule],
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA
   ],

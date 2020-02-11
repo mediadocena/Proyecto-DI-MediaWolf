@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = function(Image) {
+
    const fs = require('fs');
     Image.FileUpload = function(file,name, cb){
             console.log('fichero',file)
