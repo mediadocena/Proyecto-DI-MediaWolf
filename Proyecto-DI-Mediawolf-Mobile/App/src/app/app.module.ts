@@ -15,11 +15,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListaComponent } from './Components/lista/lista.component';
 import { NoticiasService } from './Service/noticias.service';
 import { IconouserComponent } from './Components/iconouser/iconouser.component';
+import { NoticiaComponent } from './Components/noticia/noticia.component';
+import { SafePipe } from './Pipes/safe.pipe';
 
 @NgModule({
-  declarations: [AppComponent,InicioComponent,ListaComponent,IconouserComponent],
+  declarations: [
+    AppComponent,
+    InicioComponent,
+    ListaComponent,
+    IconouserComponent,
+    NoticiaComponent,
+    SafePipe],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,FormsModule,ReactiveFormsModule],
+  imports: [BrowserModule, IonicModule.forRoot(),
+     AppRoutingModule,HttpClientModule,FormsModule,ReactiveFormsModule],
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA
   ],

@@ -1,0 +1,71 @@
+<ion-content class="getstart">
+  <div class="container">
+    <br>
+      <div>
+          <div class="container noticiascss">
+              <div class="row">
+                  <div class="col-1"></div>
+                <div class="col-10">
+                  <br>
+                  <h1 style="color:rgb(255, 255, 255)">{{noticia.titulo}}</h1>
+                  <br>
+                  <div class="row">
+                      <div class="mx-auto"><img class="img-fluid" src="{{noticia.img}}"></div>
+                  </div>
+                  <br>
+                  <h2 style="color: #ffffff">{{noticia.subtitulo}}</h2>
+                  <p class="text-white"[innerHTML]="noticia.cuerpo | safe: 'html'"></p>
+              </div>
+            </div>
+      </div>
+        <br>
+        <div class="container noticiascss">
+          <div class="row">
+          <div class="col-1">
+          </div>
+          <div class="col-7">
+            <h1 style="color:rgb(255, 255, 255)">Comentarios</h1>
+            <br>
+          </div>
+          <div class="col-1"><button class="btn btn-success" type="button" (click)="this.isButtonVisible = !this.isButtonVisible">¡Comenta!</button></div>
+        </div>
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col-10">
+              <div *ngIf="auth == false" class="text-white">
+                <h2>Oooops, parece que no estas logeado!</h2>
+                <br>
+              <br>
+              <a routerLink="/LogIn" routerLinkActive="active">
+                <button class="btn btn-primary" type="button">Logeate!</button>
+              </a>
+              <br>
+              </div>
+              
+            </div>
+          </div>
+          <div class="col-1"></div>
+        </div>
+      </div>
+        <br>
+        <div>
+            <div class="container noticiascss" *ngFor="let comen of comentarios; let i = index; ">
+              <br>
+                <div class="row">
+                  <div class="col-1"><img src="{{comen.icono}}" class="rounded-circle z-depth-0"
+                    data-toggle="dropdown" alt="avatar image" height="35"></div>
+                  <div class="col-7">
+                    
+                    <div class="row">
+                      <div><h2 style="color: #ffffff">{{comen.nick}}</h2>
+                        <p style="color:rgb(255, 255, 255)" [(innerHTML)]=comen.cuerpo></div></div>
+                    </div>
+                    <div class="col-1" *ngIf="comen.id == idu || comen.iduser == idu">
+                      <button class="btn btn-danger" type="button" (click)="Eliminar(i)">X</button>
+                    </div>
+                </div>
+              </div>
+              <br>
+        </div>
+  </div>
+</ion-content>

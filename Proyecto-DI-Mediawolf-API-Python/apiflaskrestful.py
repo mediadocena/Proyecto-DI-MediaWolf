@@ -57,7 +57,7 @@ class Noticias(Resource):
 
     def put(self):
         usr=mongo.db.noticia
-        di = request.json['id']
+        di = request.json['_id']
         title=request.json['titulo']
         subtitle=request.json['subtitulo']
         img=request.json['img']
