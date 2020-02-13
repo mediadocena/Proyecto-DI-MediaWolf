@@ -21,7 +21,7 @@ export class NoticiaComponent implements OnInit {
   id;
   auth:boolean;
   p:number=1;
-  idu="";
+  idu="1";
   isButtonVisible:boolean = false;
   noticia:Noticia; 
   total;

@@ -7,14 +7,14 @@
                   <div class="col-1"></div>
                 <div class="col-10">
                   <br>
-                  <h1 style="color:rgb(255, 255, 255)">{{noticia.titulo}}</h1>
+                  <h1>{{noticia.titulo}}</h1>
                   <br>
                   <div class="row">
                       <div class="mx-auto"><img class="img-fluid" src="{{noticia.img}}"></div>
                   </div>
                   <br>
-                  <h2 style="color: #ffffff">{{noticia.subtitulo}}</h2>
-                  <p class="text-white"[innerHTML]="noticia.cuerpo | safe: 'html'"></p>
+                  <h2>{{noticia.subtitulo}}</h2>
+                  <p [innerHTML]="noticia.cuerpo | safe: 'html'"></p>
               </div>
             </div>
       </div>
@@ -24,7 +24,7 @@
           <div class="col-1">
           </div>
           <div class="col-7">
-            <h1 style="color:rgb(255, 255, 255)">Comentarios</h1>
+            <h1>Comentarios</h1>
             <br>
           </div>
           <div class="col-1"><button class="btn btn-success" type="button" (click)="this.isButtonVisible = !this.isButtonVisible">¡Comenta!</button></div>
@@ -32,7 +32,7 @@
         <div class="row">
           <div class="col-1"></div>
           <div class="col-10">
-              <div *ngIf="auth == false" class="text-white">
+              <div *ngIf="auth == false">
                 <h2>Oooops, parece que no estas logeado!</h2>
                 <br>
               <br>
@@ -57,8 +57,8 @@
                   <div class="col-7">
                     
                     <div class="row">
-                      <div><h2 style="color: #ffffff">{{comen.nick}}</h2>
-                        <p style="color:rgb(255, 255, 255)" [(innerHTML)]=comen.cuerpo></div></div>
+                      <div><h2>{{comen.nick}}</h2>
+                        <p [(innerHTML)]=comen.cuerpo></div></div>
                     </div>
                     <div class="col-1" *ngIf="comen.id == idu || comen.iduser == idu">
                       <button class="btn btn-danger" type="button" (click)="Eliminar(i)">X</button>

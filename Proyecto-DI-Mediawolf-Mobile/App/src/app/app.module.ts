@@ -21,13 +21,18 @@ import { AjustesComponent } from './Components/ajustes/ajustes.component';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { UsuarioComponent } from './Components/usuario/usuario.component';
+import { NoticiaComponent } from './Components/noticia/noticia.component';
+import { SafePipe } from './Pipes/safe.pipe';
+import { IonicStorageModule } from '@ionic/storage';
 
 
 @NgModule({
-  declarations: [AppComponent,InicioComponent,ListaComponent,IconouserComponent, UsuarioComponent, AjustesComponent],
+  declarations: [AppComponent,InicioComponent,ListaComponent,IconouserComponent, UsuarioComponent, AjustesComponent, SafePipe, NoticiaComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(),
-     AppRoutingModule,HttpClientModule,FormsModule,ReactiveFormsModule],
+     AppRoutingModule,HttpClientModule,FormsModule,ReactiveFormsModule,
+     IonicModule.forRoot(this.AjustesComponent),
+     IonicStorageModule.forRoot()],
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA
   ],
