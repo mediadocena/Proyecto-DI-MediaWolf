@@ -6,6 +6,16 @@ import { ToastController } from '@ionic/angular';
   providedIn: 'root'
 })
 export class UserService {
+  putUser(data:{}){
+    let local = JSON.parse(localStorage.getItem('token'));
+    let id = local.userId;
+    let token = local.id;
+    this.http.put(`http://localhost:3000/api/users/${id}?access_token=${token}`,data).subscribe(
+      (response)=>{
+        console.log('usuario modificado: ',data);
+      }
+    );
+  }
   constructor(private http:HttpClient,public toastController: ToastController) { }
 
   postUser(data:{}){

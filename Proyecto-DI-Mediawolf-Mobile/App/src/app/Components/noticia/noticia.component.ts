@@ -21,7 +21,7 @@ export class NoticiaComponent implements OnInit {
   id;
   auth:boolean;
   p:number=1;
-  idu="";
+  idu="1";
   isButtonVisible:boolean = false;
   noticia:Noticia; 
   total;
@@ -71,9 +71,9 @@ export class NoticiaComponent implements OnInit {
       comen.icono = icono;
       comen.id= datos.id;
       comen.cuerpo = this.comentarioW;
-      
+      this.comentarios.push(comen);
       dummy={
-        _id:this.id,
+        id:this.id,
         categoria:this.noticia.categoria,
         titulo:this.noticia.titulo,
         subtitulo:this.noticia.subtitulo,
