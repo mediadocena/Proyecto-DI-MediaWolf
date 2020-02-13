@@ -1,13 +1,52 @@
 {
   "name": "post",
+  "plural":"posts",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
-  "properties": {},
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": true
+    },
+    "userId":{
+      "type": "string",
+      "required": true
+    },
+    "categoria": {
+      "type": "string",
+      "required": true
+    },
+    "titulo": {
+      "type": "string",
+      "required": true
+    },
+    "cuerpo": {
+      "type": "string"
+    },
+    "comentarios": {
+      "type": [
+        {
+          "numero": "number",
+          "nick": "string",
+          "cuerpo": "string",
+          "icono": "string",
+          "iduser": "string"
+        }
+      ]
+    }
+  },
   "validations": [],
   "relations": {},
-  "acls": [],
+  "acls": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "*"
+    }
+  ],
   "methods": {}
 }
