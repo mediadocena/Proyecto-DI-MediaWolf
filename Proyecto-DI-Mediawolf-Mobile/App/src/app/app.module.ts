@@ -24,6 +24,7 @@ import { UsuarioComponent } from './Components/usuario/usuario.component';
 import { NoticiaComponent } from './Components/noticia/noticia.component';
 import { SafePipe } from './Pipes/safe.pipe';
 import { IonicStorageModule } from '@ionic/storage';
+import { ImagenesService } from './Service/imagenes.service';
 
 
 @NgModule({
@@ -31,8 +32,9 @@ import { IonicStorageModule } from '@ionic/storage';
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(),
      AppRoutingModule,HttpClientModule,FormsModule,ReactiveFormsModule,
-     IonicModule.forRoot(this.AjustesComponent),
-     IonicStorageModule.forRoot()],
+     IonicModule.forRoot(),
+     IonicStorageModule.forRoot()
+    ],
   schemas:[
     CUSTOM_ELEMENTS_SCHEMA
   ],
@@ -41,6 +43,7 @@ import { IonicStorageModule } from '@ionic/storage';
     SplashScreen,
     UserService,
     NoticiasService,
+    ImagenesService,
     Camera,
     File,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

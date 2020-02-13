@@ -57,7 +57,7 @@ class Noticias(Resource):
 
     def put(self):
         usr=mongo.db.noticia
-        di = request.json['_id']
+        di = request.json['id']
         title=request.json['titulo']
         subtitle=request.json['subtitulo']
         img=request.json['img']
@@ -79,7 +79,7 @@ class NoticiasId(Resource):
                 cuerpo = s['cuerpo']
                 comArr = []
                 for c in s['comentarios']: 
-                    objid = c['id']
+                    objid = c['_id']
                     comArr.append({
                     'id':JSONEncoder().encode(objid).replace('"',''),
                     'nick' : c['nick'],
