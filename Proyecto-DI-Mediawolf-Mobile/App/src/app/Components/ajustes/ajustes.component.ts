@@ -55,7 +55,7 @@ export class AjustesComponent implements OnInit {
   almacenamiento() {
     this.file.checkDir(this.file.dataDirectory, 'mydir').then(_ => console.log('Directory exists')).catch(err =>
       console.log('Directory doesnt exist'));
-      alert("VERGAAAAA")
+      alert("Funciona")
   }
 
   almacenamientoV2() {
