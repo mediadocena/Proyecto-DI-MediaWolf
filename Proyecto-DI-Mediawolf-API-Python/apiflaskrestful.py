@@ -41,7 +41,7 @@ class Noticias(Resource):
         output=[]
         for s in usr.find():
             di = JSONEncoder().encode(s['_id']).replace('"','')
-            output.append({'id':di,'titulo':s['titulo'],'img':s['img'],'subtitulo':s['subtitulo'],'cuerpo':s['cuerpo']})
+            output.append({'id':di,'categoria':s['categoria'],'titulo':s['titulo'],'img':s['img'],'subtitulo':s['subtitulo'],'cuerpo':s['cuerpo']})
         return output
 
     def post(self):
