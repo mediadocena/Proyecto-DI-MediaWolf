@@ -41,7 +41,7 @@ class Noticias(Resource):
         output=[]
         for s in usr.find():
             di = JSONEncoder().encode(s['_id']).replace('"','')
-            output.append({'id':di,'titulo':s['titulo'],'img':s['img'],'subtitulo':s['subtitulo'],'cuerpo':s['cuerpo']})
+            output.append({'id':di,'categoria':s['categoria'],'titulo':s['titulo'],'img':s['img'],'subtitulo':s['subtitulo'],'cuerpo':s['cuerpo']})
         return output
 
     def post(self):
@@ -79,7 +79,7 @@ class NoticiasId(Resource):
                 cuerpo = s['cuerpo']
                 comArr = []
                 for c in s['comentarios']: 
-                    objid = c['_id']
+                    objid = c['id']
                     comArr.append({
                     'id':JSONEncoder().encode(objid).replace('"',''),
                     'nick' : c['nick'],
