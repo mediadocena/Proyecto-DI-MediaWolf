@@ -9,13 +9,14 @@
         <h1><b><strong>{{userName}}</strong></b></h1>
         <br>
         <div class="row">
-        <div class="mx-auto"><img class="img-fluid" src="{{iconoUser}}"></div>
+        <!--<div class="mx-auto"><img class="img-fluid" src="{{img}}"></div>-->
+        <img *ngIf="image" [src]="image" alt="image">
         </div>
         <br>
         <h1><b><strong>AJUSTES DE USUARIO</strong></b></h1>
         <h3><b>ADMINISTRA TODO TU PERFIL COMODAMENTE DESDE AQUÍ</b></h3>
         <p></p>
-        <ion-button class="text-center" block color="primary" (click)="fotasa()">
+        <ion-button class="text-center" block color="primary" (click)="takePicture()">
           Camara
         </ion-button>
         <ion-button class="text-center" block color="primary" (click)="almacenamiento()">

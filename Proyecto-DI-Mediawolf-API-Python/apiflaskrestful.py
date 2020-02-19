@@ -79,7 +79,7 @@ class NoticiasId(Resource):
                 cuerpo = s['cuerpo']
                 comArr = []
                 for c in s['comentarios']: 
-                    objid = c['_id']
+                    objid = c['id']
                     comArr.append({
                     'id':JSONEncoder().encode(objid).replace('"',''),
                     'nick' : c['nick'],
@@ -109,4 +109,4 @@ api.add_resource(Noticias,'/noticias')
 api.add_resource(NoticiasId,'/noticiasId')
 
 if __name__ =='__main__':
-    app.run(port='5000')
+    app.run(port='5000', host='192.168.1.133')

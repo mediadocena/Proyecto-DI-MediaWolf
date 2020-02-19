@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Noticia } from '../Models/NoticiasModel';
 import { map, delay } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { URL_API_PY, URL_API } from '../cons/constantes';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +18,7 @@ export class NoticiasService {
    public id;
 
    getNoticias(){
-     return this.http.get('http://127.0.0.1:5000/noticias').pipe(
+     return this.http.get(URL_API_PY+'noticias').pipe(
       map( this.crearArreglo ),
       delay(0)
     );
@@ -25,7 +26,7 @@ export class NoticiasService {
     postNoticias(noticia){
       let id;
       let data;
-      this.http.post('http://127.0.0.1:5000/noticias',noticia).subscribe((response)=>{
+      this.http.post(URL_API_PY+'noticias',noticia).subscribe((response)=>{
         alert('Noticia Subida')
         this.getNoticias().subscribe((data)=>{
         })
@@ -37,7 +38,7 @@ export class NoticiasService {
     getNoticiaPorId(id){
   
      //return this.http.get(`http://localhost:3000/api/noticias/${id}?access_token=${this.token}`);
-       return this.http.get(`http://127.0.0.1:5000/noticiasId?_id=${id}`);
+       return this.http.get(URL_API_PY+`noticiasId?_id=${id}`);
     }
 
        
@@ -56,7 +57,7 @@ export class NoticiasService {
 
       updateNoticia(/*id,*/noticia){
         //return this.http.put(`http://localhost:3000/api/noticias/${id}?access_token=${this.token}`,noticia);
-        return this.http.put('http://127.0.0.1:5000/noticias', noticia)
+        return this.http.put(URL_API_PY+'noticias', noticia)
       }
     saveId(id){
       this.id=id;
@@ -65,6 +66,6 @@ export class NoticiasService {
       return this.id;
     }
     deleteNoticia(id){
-      return this.http.delete(`http://localhost:3000/api/noticias/${id}?access_token=${this.token}`,id);
+      return this.http.delete(URL_API+`noticias/${id}?access_token=${this.token}`,id);
     }
 }

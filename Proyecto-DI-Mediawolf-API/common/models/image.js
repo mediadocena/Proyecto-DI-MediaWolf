@@ -7,7 +7,7 @@ module.exports = function(Image) {
             console.log('fichero',file)
             console.log('nombre',name)
         fs.writeFile('./files/images/'+name,file,'base64',function (err) {});
-        cb(null,'ALGO'+file);
+        cb(null,'ALGO'+name);
     }
 
     Image.remoteMethod('FileUpload', {

@@ -6,6 +6,11 @@ import { File } from '@ionic-native/file/ngx';
 import { Storage } from '@ionic/storage';
 import { ImagenesService } from 'src/app/Service/imagenes.service';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { Base64 } from '@ionic-native/base64/ngx';
+import { ToastController } from '@ionic/angular';
+import { URL_API } from 'src/app/cons/constantes';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
+
 
 const MEDIA_FOLDER_NAME = 'my_media';
 
@@ -18,7 +23,7 @@ export class AjustesComponent implements OnInit {
 
   files = [];
 
-  constructor(private router:Router, private user:UserService, private camera:Camera, private file:File, private storage: Storage, private imageService:ImagenesService) { }
+  constructor(private webView:WebView,private base64:Base64, private router:Router, private user:UserService, private camera:Camera, private file:File, private storage: Storage, private imageService:ImagenesService) { }
   iconoUser;
   userName;
   ext: any;
@@ -26,6 +31,7 @@ export class AjustesComponent implements OnInit {
   nombreIcono:string;
   userid;
   userObj;
+  image:string;
   options: CameraOptions = {
     quality: 100,
     destinationType: this.camera.DestinationType.FILE_URI,
@@ -39,14 +45,14 @@ export class AjustesComponent implements OnInit {
     this.user.obtenerUsuario().subscribe((res:any)=>{this.userName = res.username});
   }
 
-  fotasa() {
-    this.camera.getPicture(this.options).then((imageData) => {
+  async fotasa() {
+    const tempImage = this.camera.getPicture(this.options).then((imageData:string) => {
      // imageData is either a base64 encoded string or a file URI
      // If it's base64 (DATA_URL):
      this.img = imageData;
      this.cambiarImagen();
-     alert();
      let base64Image = 'data:image/jpeg;base64,' + imageData;
+     this.almacenamiento();
     }, (err) => {
      // Handle error
     });
@@ -97,7 +103,7 @@ export class AjustesComponent implements OnInit {
         "rol":resp.rol
       };
       this.subirImagen();
-      this.userObj.icono = `http://localhost:3000/api/images/images/download/${this.nombreIcono}`;
+      this.userObj.icono = URL_API+`images/images/download/${this.nombreIcono}`;
       this.user.putUser(this.userObj);
       alert(this.userObj+'\n'+this.img);
     });
@@ -106,7 +112,11 @@ export class AjustesComponent implements OnInit {
   }
 
    subirImagen(){
-     this.nombreIcono = this.nombreIcono+'.'+this.ext;
+     this.nombreIcono = this.nombreIcono+'.jpg';
+     this.base64.encodeFile(this.img).then((base64File: string) => {
+       this.img = base64File;
+       alert(this.img);
+     })
      this.imageService.uploadImage(this.img, this.nombreIcono).subscribe(
        (res) => {
          alert('Se ha actualizado el icono correctamente');
@@ -115,4 +125,21 @@ export class AjustesComponent implements OnInit {
          alert('Ha ocurrido un error en la subida de la imagen:'+err.err);
        })
  }
+
+ takePicture() {
+  const options: CameraOptions = {
+    quality: 100,
+    destinationType: this.camera.DestinationType.FILE_URI,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE,
+    sourceType: this.camera.PictureSourceType.CAMERA
+  };
+  this.camera.getPicture(options)
+  .then((imageData) => {
+    this.image = this.webView.convertFileSrc(imageData);
+  }, (err) => {
+    console.log(err);
+  });
+}
+
 }

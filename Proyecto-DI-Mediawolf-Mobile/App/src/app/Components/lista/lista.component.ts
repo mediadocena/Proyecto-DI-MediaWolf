@@ -13,7 +13,7 @@ export class ListaComponent implements OnInit {
 
   constructor(private noticia:NoticiasService, private router:Router) { }
 
-  noticias:Noticia[]=[];
+  noticias=[];
   p:number=1;
   rol;
   tpp = 10;
@@ -30,7 +30,7 @@ export class ListaComponent implements OnInit {
   }
 
   iranoticia(id){
-    console.log(this.noticias[1]._id)
+    console.log(this.noticias[1].id)
     console.log(id);
     this.noticia.saveId(id);
     this.router.navigateByUrl(`/Noticias/${id}`);

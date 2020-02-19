@@ -20,8 +20,8 @@ export class InicioComponent implements OnInit {
   
   LogIn(){
     let userlog={
-      'username':this.username,
-      'password':this.password
+      "username":this.username,
+      "password":this.password
     };
     console.log(userlog);
     this.user.loginUser(userlog);
