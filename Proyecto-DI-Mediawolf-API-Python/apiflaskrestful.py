@@ -104,11 +104,11 @@ def Busqueda(args):
     usr=mongo.db.noticia
     output=[]
     for s in usr.find():
-        if escape(args) in s['titulo']:    
+        if escape(args).lower() in str(s['titulo']).lower():    
             di = JSONEncoder().encode(s['_id']).replace('"','')
             output.append({'id':di,'categoria':s['categoria'],'titulo':s['titulo'],'img':s['img'],'subtitulo':s['subtitulo'],'cuerpo':s['cuerpo']})
     return jsonify(output)
-
+'''
 @app.route('/BusquedaPost/<args>')
 def BusquedaPost(args):
     usr=mongo.db.post
@@ -118,7 +118,7 @@ def BusquedaPost(args):
             di = JSONEncoder().encode(s['_id']).replace('"','')
             output.append({'id':di,'categoria':s['categoria'],'titulo':s['titulo'],'userId':s['userId'],'cuerpo':s['cuerpo']})
     return jsonify(output)
-
+'''
 
 @app.after_request
 def after_request(response):
