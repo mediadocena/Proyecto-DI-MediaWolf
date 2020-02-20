@@ -2,6 +2,7 @@ from flask import Flask,request,jsonify
 from flask_restful import Resource,Api
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from markupsafe import escape
 import json
 app = Flask(__name__)
 app.config['MONGO_DBNAME']='test'
@@ -98,6 +99,27 @@ class NoticiasId(Resource):
                 }
                 print('NOTISIO',noticia['comentarios'])
             return jsonify(noticia)
+@app.route('/Busqueda/<args>')
+def Busqueda(args):
+    usr=mongo.db.noticia
+    output=[]
+    for s in usr.find():
+        if escape(args) in s['titulo']:    
+            di = JSONEncoder().encode(s['_id']).replace('"','')
+            output.append({'id':di,'categoria':s['categoria'],'titulo':s['titulo'],'img':s['img'],'subtitulo':s['subtitulo'],'cuerpo':s['cuerpo']})
+    return jsonify(output)
+
+@app.route('/BusquedaPost/<args>')
+def BusquedaPost(args):
+    usr=mongo.db.post
+    output=[]
+    for s in usr.find():
+        if escape(args) in s['titulo']:    
+            di = JSONEncoder().encode(s['_id']).replace('"','')
+            output.append({'id':di,'categoria':s['categoria'],'titulo':s['titulo'],'userId':s['userId'],'cuerpo':s['cuerpo']})
+    return jsonify(output)
+
+
 @app.after_request
 def after_request(response):
     response.headers.add('Access-Control-Allow-Origin', '*')
@@ -109,4 +131,4 @@ api.add_resource(Noticias,'/noticias')
 api.add_resource(NoticiasId,'/noticiasId')
 
 if __name__ =='__main__':
-    app.run(port='5000', host='192.168.1.133')
+    app.run(port='5000')
