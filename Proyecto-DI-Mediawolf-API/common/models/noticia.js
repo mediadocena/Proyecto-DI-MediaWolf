@@ -8,7 +8,7 @@ module.exports = function(Noticia) {
             access_token_key:'1230889896413401088-BuqugxBQF3cOxdudpVFu8pfXl6OTIZ',
             access_token_secret:'YicbZpFMcarM8Uf9rfagg1Eg194slZDlTZkzu88EGUEfW'
         })
-        client.post('statuses/update',{status:`¡Nueva Noticia!${titulo}\n http://localhost:4200/Noticias/${id}`},function(err,tweet,resp){
+        client.post('statuses/update',{status:`¡Nueva Noticia!\n${titulo}\n http://localhost:4200/Noticias/${id}`},function(err,tweet,resp){
             if(err){
                 console.log(err)
             }
