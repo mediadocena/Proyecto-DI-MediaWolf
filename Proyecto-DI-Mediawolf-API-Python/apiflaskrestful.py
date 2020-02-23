@@ -114,6 +114,13 @@ def Busqueda(args):
             di = JSONEncoder().encode(s['_id']).replace('"','')
             output.append({'id':di,'categoria':s['categoria'],'titulo':s['titulo'],'img':s['img'],'subtitulo':s['subtitulo'],'cuerpo':s['cuerpo']})
     return jsonify(output)
+
+@app.route('/Posts/<id>')
+def BorrarPost(args):
+    usr = mongo.db.post
+    di = escape(args)
+    usr.delete_one({'_id':ObjectId(di)})
+    return {'status':'Post borrado'}
 '''
 @app.route('/BusquedaPost/<args>')
 def BusquedaPost(args):
