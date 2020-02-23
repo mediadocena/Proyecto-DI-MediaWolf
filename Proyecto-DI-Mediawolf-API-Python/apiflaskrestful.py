@@ -66,6 +66,12 @@ class Noticias(Resource):
         comments=request.json['comentarios']
         usr.update_one({'_id':ObjectId(di)},{'$set':{'titulo':title,'subtitulo':subtitle,'img':img,'cuerpo':body,'comentarios':comments}})
         return{'status':'noticia actualizada correctamente'}
+
+    def delete(self):
+        usr = mongo.db.noticia
+        di = request.args.get('id')
+        usr.delete_one({'_id':ObjectId(di)})
+        return {'status':'Noticia eliminada correctamente'}
 class NoticiasId(Resource):
         def get(self):  
             usr=mongo.db.noticia
